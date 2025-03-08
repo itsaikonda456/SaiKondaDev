@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/SaiKondaDev/static/css/main.ae04a3da.css",
+    "main.js": "/SaiKondaDev/static/js/main.1b7a3ee0.js",
+    "static/media/justspace.png": "/SaiKondaDev/static/media/justspace.a1fad5a72c608233ab99.png",
+    "static/media/ecommerce.png": "/SaiKondaDev/static/media/ecommerce.e2ac2f9b617b2355a50b.png",
+    "static/media/lamabooking.png": "/SaiKondaDev/static/media/lamabooking.ee8e6f2b78eaa62c589a.png",
+    "static/media/icoder.png": "/SaiKondaDev/static/media/icoder.06e72de3cf91808c2e6c.png",
+    "static/media/photo.jpeg": "/SaiKondaDev/static/media/photo.af81ab45a5d9008b3323.jpeg",
+    "static/media/texttwister.png": "/SaiKondaDev/static/media/texttwister.657efb98a1d25431e4d1.png",
+    "static/media/signpad.png": "/SaiKondaDev/static/media/signpad.bee3da347967fc6bc14a.png",
+    "index.html": "/SaiKondaDev/index.html",
+    "main.ae04a3da.css.map": "/SaiKondaDev/static/css/main.ae04a3da.css.map",
+    "main.1b7a3ee0.js.map": "/SaiKondaDev/static/js/main.1b7a3ee0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ae04a3da.css",
+    "static/js/main.1b7a3ee0.js"
+  ]
+}
