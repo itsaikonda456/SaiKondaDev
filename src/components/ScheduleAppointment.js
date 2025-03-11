@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./ScheduleAppointment.css";
 
 const ScheduleAppointment = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +12,7 @@ const ScheduleAppointment = () => {
     services: [],
     message: "",
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const timeSlots = [
     "2:00–2:30 pm",
@@ -43,9 +44,22 @@ const ScheduleAppointment = () => {
       date: selectedDate,
       time: selectedTime,
       ...formData,
+      id: Date.now(), // Add a unique ID
+      status: "pending"
     };
 
     try {
+      // Option 1: Store in localStorage for client-side persistence
+      const existingAppointments = localStorage.getItem("appointments");
+      const appointments = existingAppointments 
+        ? JSON.parse(existingAppointments) 
+        : [];
+      
+      appointments.push(appointmentData);
+      localStorage.setItem("appointments", JSON.stringify(appointments));
+      
+      // Option 2: Send to backend API (uncomment if using)
+      /*
       const response = await fetch("http://localhost:5000/api/schedule", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,11 +68,20 @@ const ScheduleAppointment = () => {
 
       const data = await response.json();
       if (data.success) {
-        alert("Appointment Scheduled Successfully!");
-        setFormData({ name: "", email: "", phone: "", services: [], message: "" });
-        setSelectedDate(null);
-        setSelectedTime(null);
+        // Handle success
       }
+      */
+      
+      // Show success message and reset form
+      setShowSuccess(true);
+      
+      // Reset form after submission
+      setTimeout(() => {
+        setShowSuccess(false);
+        setFormData({ name: "", email: "", phone: "", services: [], message: "" });
+        setSelectedDate("");
+        setSelectedTime("");
+      }, 3000);
     } catch (error) {
       console.error("Error scheduling appointment", error);
       alert("Failed to schedule appointment.");
@@ -68,22 +91,30 @@ const ScheduleAppointment = () => {
   return (
     <div className="container my-5 d-flex justify-content-center">
       <div className="form-container w-75">
-        <h2 className="text-success fs-4  text-center">MEETING REQUEST FORM</h2>
+        <h2 className="text-success fs-4 text-center">MEETING REQUEST FORM</h2>
         <h3 className="text-center fs-6">We look forward to meeting with you</h3>
+
+        {showSuccess && (
+          <div className="alert alert-success mt-3" role="alert">
+            Appointment scheduled successfully! Your request has been submitted.
+          </div>
+        )}
 
         <div className="row">
           <div className="col-md-6">
-            <label  for='selectdate' className="form-label mt-3">Select a date *</label>
+            <label htmlFor="selectdate" className="form-label mt-3">Select a date *</label>
             <input
               type="date"
               id="selectdate"
               className="form-control mt-0 border border-black"
               onChange={(e) => setSelectedDate(e.target.value)}
+              value={selectedDate}
+              required
             />
           </div>
 
           <div className="col-md-6">
-            <label for='timeslot' className="form-label mt-3">Select time slot *</label>
+            <label htmlFor="timeslot" className="form-label mt-3">Select time slot *</label>
             <select
               className="form-control mt-0 border border-black"
               id="timeslot"
@@ -105,7 +136,7 @@ const ScheduleAppointment = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="mb-2">
-                <label for='name' className="form-label">Name *</label>
+                <label htmlFor="name" className="form-label">Name *</label>
                 <input
                   type="text"
                   className="form-control border border-black"
@@ -120,7 +151,7 @@ const ScheduleAppointment = () => {
             </div>
             <div className="col-md-6">
               <div className="mb-2">
-                <label for='email' className="form-label">Email address *</label>
+                <label htmlFor="email" className="form-label">Email address *</label>
                 <input
                   type="email"
                   className="form-control border border-black"
@@ -136,7 +167,7 @@ const ScheduleAppointment = () => {
           </div>
 
           <div className="mb-2">
-            <label for='phone' className="form-label">Phone number *</label>
+            <label htmlFor="phone" className="form-label">Phone number *</label>
             <input
               type="tel"
               className="form-control border border-black"
@@ -157,9 +188,10 @@ const ScheduleAppointment = () => {
                 value="Full-Stack Development"
                 id="f"
                 className="me-2"
+                checked={formData.services.includes("Full-Stack Development")}
                 onChange={handleServiceSelection}
               />
-              <label for='f'>Full-Stack Development</label>
+              <label htmlFor="f">Full-Stack Development</label>
             </div>
             <div>
               <input
@@ -167,9 +199,10 @@ const ScheduleAppointment = () => {
                 value="AI Solutions"
                 id="ai"
                 className="me-2"
+                checked={formData.services.includes("AI Solutions")}
                 onChange={handleServiceSelection}
               />
-              <label for='ai'>AI Solutions</label>
+              <label htmlFor="ai">AI Solutions</label>
             </div>
             <div>
               <input
@@ -177,9 +210,10 @@ const ScheduleAppointment = () => {
                 value="Responsive UI Design"
                 id="ui"
                 className="me-2"
+                checked={formData.services.includes("Responsive UI Design")}
                 onChange={handleServiceSelection}
               />
-              <label for='ui'>Responsive UI Design</label>
+              <label htmlFor="ui">Responsive UI Design</label>
             </div>
           </div>
 

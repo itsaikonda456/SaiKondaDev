@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css"; // Import custom CSS
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const handleScroll = (id) => {
@@ -42,8 +43,9 @@ const Navbar = () => {
               <a className="nav-link custom-hover" href="#" onClick={(e) => { e.preventDefault(); handleScroll("projects"); }}>Projects</a>
             </li>
             <li className="nav-item">
-              <a className="btn btn-outline-dark" href="#" onClick={(e) => { e.preventDefault(); handleScroll("contact"); }}>Contact</a>
+              <a className="nav-link custom-hover" href="#" onClick={(e) => { e.preventDefault(); handleScroll("contact"); }}>Contact</a>
             </li>
+           
           </ul>
         </div>
       </div>

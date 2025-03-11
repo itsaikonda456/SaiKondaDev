@@ -1,0 +1,79 @@
+/* Appointments.css */
+.appointment-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid #ddd;
+    background-color: white;
+  }
+  
+  .appointment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  .appointment-card .card-header {
+    background-color: #f8f9fa;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .appointment-card .card-body {
+    padding: 16px;
+  }
+  
+  .appointment-card.accepted {
+    border-left: 4px solid #28a745;
+  }
+  
+  .appointment-card.rejected {
+    border-left: 4px solid #dc3545;
+  }
+  
+  .appointment-info p {
+    margin-bottom: 8px;
+  }
+  
+  .message-text {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 576px) {
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .action-buttons .btn {
+      margin-right: 0 !important;
+      margin-bottom: 8px;
+    }
+  }
+  
+  /* Badge styling */
+  .badge {
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+  
+  /* Add animation for new appointments */
+  @keyframes highlight {
+    0% { background-color: rgba(255, 251, 235, 1); }
+    100% { background-color: rgba(255, 251, 235, 0); }
+  }
+  
+  .new-appointment {
+    animation: highlight 2s ease-out;
+  }

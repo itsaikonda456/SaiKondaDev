@@ -1,5 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import About from "./components/About";
@@ -8,8 +13,8 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScheduleAppointment from "./components/ScheduleAppointment";
+import Appointments from "./components/Appointments";
 import "./App.css";
-import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -29,7 +34,6 @@ const MainContent = () => {
         <Projects />
       </div>
       <div id="contact">
-        
         <Contact />
       </div>
     </>
@@ -42,14 +46,15 @@ const App = () => {
   }, []);
 
   const location = useLocation();
-  const isSchedulePage = location.pathname === "/schedule-appointment";
+  const isSpecialPage = ["/schedule-appointment", "/appointments"].includes(location.pathname);
 
   return (
     <>
       <Navbar />
-      {!isSchedulePage && <MainContent />}
+      {!isSpecialPage && <MainContent />}
       <Routes>
-        <Route  path="/schedule-appointment" element={<ScheduleAppointment />} />
+        <Route path="/schedule-appointment" element={<ScheduleAppointment />} />
+        <Route path="/appointments" element={<Appointments />} />
       </Routes>
       <Footer />
     </>
