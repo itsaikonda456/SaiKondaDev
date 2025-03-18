@@ -10,6 +10,7 @@ import HeroSection from "./components/HeroSection";
 import About from "./components/About";
 import SkillsSection from "./components/SkillsSection";
 import Projects from "./components/Projects";
+import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScheduleAppointment from "./components/ScheduleAppointment";
@@ -32,6 +33,9 @@ const MainContent = () => {
       </div>
       <div id="projects">
         <Projects />
+      </div>
+      <div id="education">
+        <Education />
       </div>
       <div id="contact">
         <Contact />

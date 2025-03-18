@@ -1,4 +1,94 @@
 #about {
-    padding-top: 100px; /* Adjust this value based on your navbar height */
+    padding-top: 60px; /* Reduced from 100px to fix the large gap */
+    padding-bottom: 40px; /* Reduced from 60px to 40px */
   }
+  
+.about-section {
+  overflow: hidden;
+}
+
+.about-heading {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.about-subheading {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  color: #28a745;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.about-text {
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  line-height: 1.6;
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+.about-link {
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 600;
+  transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.about-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #28a745;
+  transition: width 0.3s ease;
+}
+
+.about-link:hover:after {
+  width: 100%;
+}
+
+.about-link:hover {
+  color: #28a745;
+}
+
+.about-image {
+  transition: transform 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 992px) {
+  .about-image-container {
+    margin-top: 2rem;
+  }
+  
+  .about-text {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #about {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .about-heading {
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .about-image {
+    width: 70% !important;
+  }
+}
   

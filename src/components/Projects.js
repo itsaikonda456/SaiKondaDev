@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './Project.css';
+import './common.css';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import ecommerce from '../utilities/ecommerce.png';
@@ -56,115 +57,97 @@ const projects = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleProjectClick = (project, index) => {
+    setSelectedProject(project);
+    setCurrentIndex(index);
+  };
+
+  const handlePrevious = (e) => {
+    e.stopPropagation();
+    const newIndex = (currentIndex - 1 + projects.length) % projects.length;
+    setSelectedProject(projects[newIndex]);
+    setCurrentIndex(newIndex);
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    const newIndex = (currentIndex + 1) % projects.length;
+    setSelectedProject(projects[newIndex]);
+    setCurrentIndex(newIndex);
+  };
 
   return (
-    <section id="projects" className="container py-5" data-aos="fade-up">
-      <h2 className="text-center fw-bold mb-4">Projects</h2>
-      <div className="row projectcard-gap">
-        {projects.map((project, index) => (
-          <div key={index} className="col-md-4">
-            <div
-              className="card border-0 shadow-sm project-card h-100"
-              onClick={() => setSelectedProject(project)}
-            >
-              <img src={project.image} className="card-img-top" alt={project.title} />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title fw-bold">{project.title}</h5>
-                <p className="card-text flex-grow-1">{project.description}</p>
-                <a href={project.link} className="text-decoration-none fw-bold" target="_blank" rel="noopener noreferrer">
-                  Learn more
-                </a>
+    <section id="projects">
+      <div className="container" data-aos="fade-up">
+        <div className="heading-container">
+          <h2 className="projects-heading section-heading">Projects</h2>
+        </div>
+        <div className="row">
+          {projects.map((project, index) => (
+            <div key={index} className="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay={index * 100}>
+              <div
+                className="project-card h-100"
+                style={{
+                  transition: "transform 0.3s ease-in-out",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                onClick={() => handleProjectClick(project, index)}
+              >
+                <img src={project.image} className="project-image" alt={project.title} />
+                <div className="card-body d-flex flex-column p-4">
+                  <h5 className="project-title">{project.title}</h5>
+                  <p className="project-description flex-grow-1">{project.description}</p>
+                  <div>
+                    <a 
+                      href={project.link} 
+                      className="project-link" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Read More
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {selectedProject && (
-  <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-    <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-      <button className="close-btn" onClick={() => setSelectedProject(null)}>&times;</button>
-      <div className="modal-content">
-        {/* Image on Top */}
-        <img src={selectedProject.image} className="modal-image img-fluid" alt={selectedProject.title} />
-        
-        {/* Text Below */}
-        <div className="modal-text">
-          <h5 className="fw-bold">{selectedProject.title}</h5>
-          <p>{selectedProject.details}</p>
+        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+          <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setSelectedProject(null)}>&times;</button>
+            <div className="modal-content">
+              <img src={selectedProject.image} className="modal-image" alt={selectedProject.title} />
+              <div className="modal-text">
+                <h3>{selectedProject.title}</h3>
+                <p>{selectedProject.details}</p>
+                <a 
+                  href={selectedProject.link}
+                  className="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Project
+                </a>
+              </div>
+            </div>
+            <div className="modal-navigation">
+              <span onClick={handlePrevious} style={{ cursor: 'pointer', marginRight: '10px' }}>
+                &lt; {currentIndex + 1} / {projects.length}
+              </span>
+              <span onClick={handleNext} style={{ cursor: 'pointer' }}>
+                &gt;
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-)}
-
-
-
-      <style>
-        {`
-          .project-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-          }
-          .project-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-          }
-          .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1050;
-          }
-          .modal-container {
-            background: white;
-            width: 60%;
-            max-width: 900px;
-            padding: 20px;
-            border-radius: 10px;
-            position: relative;
-          }
-          .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-          }
-          .modal-content {
-            display: flex;
-            align-items: center;
-            text-align: left;
-          }
-          .modal-image {
-            width: 40%;
-            margin-right: 20px;
-          }
-          .modal-text {
-            flex: 1;
-          }
-          @media (max-width: 768px) {
-            .modal-container {
-              width: 90%;
-            }
-            .modal-content {
-              flex-direction: column;
-              text-align: center;
-            }
-            .modal-image {
-              width: 80%;
-              margin-bottom: 15px;
-            }
-          }
-        `}
-      </style>
+      )}
     </section>
   );
 };

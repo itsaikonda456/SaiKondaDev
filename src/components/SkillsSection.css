@@ -1,0 +1,160 @@
+#skillsSection {
+  padding: 20px 0;
+  background-color: #f8f9fa;
+}
+
+.skills-heading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  width: auto;
+  display: inline-block;
+}
+
+.skill-card {
+  border-radius: 8px;
+  border: none;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-name {
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.progress-container {
+  position: relative;
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-custom {
+  height: 100%;
+  border-radius: 5px;
+}
+
+.progress-label {
+  position: absolute;
+  right: 0;
+  top: -25px;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 600;
+}
+
+.blog-card {
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-image {
+  height: 180px;
+  object-fit: cover;
+}
+
+.blog-title {
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.blog-description {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  color: #6c757d;
+}
+
+.blog-card .card-body .blog-link {
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 500;
+  color: #28a745 !important;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.blog-card .card-body .blog-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #28a745;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.blog-card .card-body .blog-link:hover {
+  color: #218838 !important;
+  text-decoration: none;
+}
+
+.blog-card .card-body .blog-link:hover::after {
+  transform: scaleX(1);
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  #skillsSection {
+    padding: 40px 0;
+  }
+  
+  .skills-heading {
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-image {
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-card {
+    margin-bottom: 1rem;
+  }
+  
+  .blog-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #skillsSection {
+    padding: 10px 0;
+  }
+  
+  .skills-heading:after {
+    width: 40px;
+  }
+  
+  .blog-image {
+    height: 140px;
+  }
+} 

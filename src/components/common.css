@@ -1,0 +1,91 @@
+/* Common styles for section headings */
+.section-heading {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 2rem;
+  width: auto;
+}
+
+.heading-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #28a745;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.section-heading:hover::after {
+  transform: scaleX(1);
+  width: 100%;
+}
+
+/* Container for centered headings */
+.heading-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Common styles for links */
+.hover-underline {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.hover-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #28a745;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Footer link styles */
+.footer-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #28a745;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
+} 
